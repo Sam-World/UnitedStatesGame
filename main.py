@@ -22,11 +22,12 @@ while len(guessed_states) < 50:
         new_data.to_csv("states_to_learn.csv")
         break
 
-    if answer_state in all_states:
-        guessed_states.append(answer_state)
-        t = turtle.Turtle()
-        t.hideturtle()
-        t.penup()
-        state_data = data[data.state == answer_state] #fetches row info where state = answer_state
-        t.goto(int(state_data.x), int(state_data.y))
-        t.write(answer_state) #state_data.state.item() - will use first piece of info from row
+    if answer_state not in guessed_states:
+        if answer_state in all_states:
+            guessed_states.append(answer_state)
+            t = turtle.Turtle()
+            t.hideturtle()
+            t.penup()
+            state_data = data[data.state == answer_state] #fetches row info where state = answer_state
+            t.goto(int(state_data.x), int(state_data.y))
+            t.write(answer_state) #state_data.state.item() - will use first piece of info from row
